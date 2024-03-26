@@ -73,6 +73,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        - name: Debug Workspace Contents
+          run: ls -la
+
+        - name: Debug Out Directory Contents
+          run: ls -la ./outF
       - name: Build and Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
